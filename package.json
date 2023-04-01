@@ -1,0 +1,17 @@
+{
+  "name": "omnissiah-ws",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:au-re/omnissiah-ws.git",
+  "author": "Aurélien <au.re@live.com>",
+  "license": "GPL-3",
+  "dependencies": {
+    "@types/minimist": "^1.2.2",
+    "@types/node": "^18.15.11",
+    "@types/pdf-parse": "^1.1.1",
+    "dotenv": "^16.0.3",
+    "minimist": "^1.2.8",
+    "openai": "^3.2.1",
+    "pdf-parse": "^1.1.1"
+  }
+}
