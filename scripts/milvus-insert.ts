@@ -1,10 +1,18 @@
+import * as dotenv from "dotenv";
 import fs from "fs";
 import { MilvusClient } from "@zilliz/milvus2-sdk-node";
 import parseArgs from "minimist";
 
+dotenv.config();
+
 const COLLECTION_NAME = "omnissiah";
 
-const milvusClient = new MilvusClient("localhost:19530");
+const milvusClient = new MilvusClient(
+  process.env.MILVUS_HOST || "localhost:19530",
+  false,
+  process.env.MILVUS_USERNAME || "Milvus",
+  process.env.MILVUS_PASSWORD || "12345"
+);
 
 const args = parseArgs(process.argv.slice(2));
 const filePath = args.f;

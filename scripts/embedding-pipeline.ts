@@ -17,7 +17,12 @@ const folderPath = args.f;
 
 if (!folderPath) throw new Error("Please provide a folder path with the -f flag.");
 
-const milvusClient = new MilvusClient(process.env.MILVUS_HOST || "localhost:19530");
+const milvusClient = new MilvusClient(
+  process.env.MILVUS_HOST || "localhost:19530",
+  false,
+  process.env.MILVUS_USERNAME || "Milvus",
+  process.env.MILVUS_PASSWORD || "12345"
+);
 
 const generateEmbedding = async (textChunk: string) => {
   const embedding = await createFileEmbedding(apiKey, textChunk);

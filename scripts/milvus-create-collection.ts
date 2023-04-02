@@ -1,16 +1,23 @@
+import * as dotenv from "dotenv";
 import { MilvusClient } from "@zilliz/milvus2-sdk-node";
 import { DataType } from "@zilliz/milvus2-sdk-node/dist/milvus/const/Milvus";
+
+dotenv.config();
 
 const COLLECTION_NAME = "omnissiah";
 const EMBEDDING_DIMENTION = "1536";
 
-const milvusClient = new MilvusClient("localhost:19530");
+const milvusClient = new MilvusClient(
+  process.env.MILVUS_HOST || "localhost:19530",
+  false,
+  process.env.MILVUS_USERNAME || "Milvus",
+  process.env.MILVUS_PASSWORD || "12345"
+);
 const collectionManager = milvusClient.collectionManager;
 
 const run = async () => {
   console.log("Creating collection...");
-  // CAREFUL: This fails silently
-  await collectionManager.createCollection({
+  const res = await collectionManager.createCollection({
     collection_name: COLLECTION_NAME,
     fields: [
       {
@@ -54,6 +61,7 @@ const run = async () => {
       },
     ],
   });
+  console.log(res);
 
   console.log("Creating index...");
   await milvusClient.indexManager.createIndex({
