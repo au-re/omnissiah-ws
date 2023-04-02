@@ -9,6 +9,7 @@
     "@types/minimist": "^1.2.2",
     "@types/node": "^18.15.11",
     "@types/pdf-parse": "^1.1.1",
+    "@zilliz/milvus2-sdk-node": "^2.2.4",
     "dotenv": "^16.0.3",
     "minimist": "^1.2.8",
     "openai": "^3.2.1",

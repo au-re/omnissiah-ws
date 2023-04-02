@@ -1,10 +1,10 @@
 # Custom
 build
+volumes
 
 # rulebooks
 *.pdf
-data/raw_text/*.txt
-data/chunks/**/*.txt
+data/**/*
 
 # Logs
 logs

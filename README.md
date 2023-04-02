@@ -30,3 +30,45 @@ This will create a folder under `chunks` with the same filename as the original 
 chunks are created and keep text together that has a common context.
 
 ## 2. Generating Embeddings
+
+To transform a file into an embedding you can use:
+
+```
+npx ts-node scripts/generate-file-embedding.ts -f path/to/file.txt
+```
+
+You can also use this script to generate an embedding from text:
+
+```
+npx ts-node scripts/generate-embedding.ts -t "What units can I shoot at?"
+```
+
+## 3. Storing the Embeddings
+
+You can store the embeddings on a database, in our case Milvus.
+
+To start Milvus run `docker compose up -p`.
+
+You can access the Milvus GUI at `http://localhost:8000`.
+
+Run this script once to create a collection and index:
+
+```
+npx ts-node scripts/milvus-create-collection.ts
+```
+
+> NOTE: this does not create a partition, you will need to add it manually in the Milvus GUI.
+
+You can insert an embedding using:
+
+```
+npx ts-node scripts/milvus-insert.ts -f path/to/file.json
+```
+
+## 4. Fetching the Closest matches
+
+You can find the closest matching text chunks from Milvus by running the following command. You will need to pass the file containing the query embedding.
+
+```
+npx ts-node scripts/fetch-closest -f path/to/file.json
+```

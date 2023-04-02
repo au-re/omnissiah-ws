@@ -11,10 +11,10 @@ const apiKey = process.env.OPENAI_API_KEY;
 if (!apiKey) throw new Error("No API key found. Please add an OPENAI_API_KEY to your .env file.");
 
 const args = parseArgs(process.argv.slice(2));
-const filePath = args.f;
+const text = args.t;
 
-if (!filePath) {
-  console.log("Please provide a path to a PDF file");
+if (!text) {
+  console.log("Please provide text to generate embedding for.");
   process.exit(1);
 }
 
@@ -27,19 +27,13 @@ const generateEmbedding = async (textChunk: string) => {
   return embedding;
 };
 
-const run = async (filePath: string) => {
-  console.log("Reading file...");
-  const fileBuffer = fs.readFileSync(filePath, "utf8");
-  const fileName = filePath
-    .replace(/\.[^/.]+$/, "")
-    .split("/")
-    .pop();
+const run = async () => {
   console.log("Generating Embedding...");
-  const embedding = await generateEmbedding(fileBuffer);
+  const embedding = await generateEmbedding(text);
   console.log("Saving Embedding...", embedding);
   if (!fs.existsSync(resultDir)) fs.mkdirSync(resultDir);
-  fs.writeFileSync(`${resultDir}/${fileName}.json`, JSON.stringify({ ...embedding, text: fileBuffer }));
+  fs.writeFileSync(`res.json`, JSON.stringify({ ...embedding, text }));
   console.log("Done!");
 };
 
-run(filePath);
+run();
