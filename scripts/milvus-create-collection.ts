@@ -29,6 +29,22 @@ const run = async () => {
         },
       },
       {
+        name: "chunkId",
+        description: "id of the chunk of text",
+        data_type: DataType.VarChar,
+        type_params: {
+          max_length: "1500",
+        },
+      },
+      {
+        name: "sourceFile",
+        description: "name of the file the text was extracted from",
+        data_type: DataType.VarChar,
+        type_params: {
+          max_length: "1500",
+        },
+      },
+      {
         name: "embedding",
         data_type: DataType.FloatVector,
         description: "embedding of the chunk of text",
@@ -48,6 +64,12 @@ const run = async () => {
       metric_type: "IP",
       params: JSON.stringify({ nlist: 10 }),
     },
+  });
+
+  console.log("Creating partition...");
+  await milvusClient.partitionManager.createPartition({
+    collection_name: COLLECTION_NAME,
+    partition_name: "main",
   });
 
   console.log("Done!");

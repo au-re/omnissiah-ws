@@ -57,8 +57,6 @@ Run this script once to create a collection and index:
 npx ts-node scripts/milvus-create-collection.ts
 ```
 
-> NOTE: this does not create a partition, you will need to add it manually in the Milvus GUI.
-
 You can insert an embedding using:
 
 ```
@@ -72,3 +70,18 @@ You can find the closest matching text chunks from Milvus by running the followi
 ```
 npx ts-node scripts/fetch-closest -f path/to/file.json
 ```
+
+## Complete Pipeline for Data Extraction
+
+Putting all the pieces above together we can build a pipeline to split text and create embeddings for any number of text.
+
+You will need to have setup the database first (see step 3.)
+
+```
+npx ts-node scripts/embedding-pipeline -f path/to/folder
+```
+
+The folder should contain .txt files.
+
+> Note: this is a simple demo and is not intended for large amounts of data. There are several things you'd want to
+> change if you are planning to create embeddings at scale.

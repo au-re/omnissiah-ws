@@ -4,7 +4,7 @@
   "main": "index.js",
   "repository": "git@github.com:au-re/omnissiah-ws.git",
   "author": "Aurélien <au.re@live.com>",
-  "license": "GPL-3",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "@types/minimist": "^1.2.2",
     "@types/node": "^18.15.11",

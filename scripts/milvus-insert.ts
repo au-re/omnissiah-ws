@@ -17,8 +17,14 @@ if (!filePath) {
 const run = async () => {
   console.log("Load embedding data...");
   const fileBuffer = fs.readFileSync(filePath, "utf8");
+  const fileName = filePath
+    .replace(/\.[^/.]+$/, "")
+    .split("/")
+    .pop();
   const openAIEmbedding = JSON.parse(fileBuffer);
   const data = {
+    sourceFile: fileName,
+    chunkId: "test",
     text: openAIEmbedding.text,
     embedding: openAIEmbedding.data[0].embedding,
   };
