@@ -54,8 +54,8 @@ export const fontColors = {
     SECONDARY: "#87A5B9",
   },
   light: {
-    PRIMARY: "#0C1B30",
-    SECONDARY: "#42526E",
+    PRIMARY: "#EBF1F5",
+    SECONDARY: "#87A5B9",
   },
 };
 
